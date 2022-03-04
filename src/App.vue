@@ -1,32 +1,38 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <router-view></router-view>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import PerfectScrollbar from "perfect-scrollbar";
 
-#nav {
-  padding: 30px;
+export default {
+  mounted() {
+    const isWindows = navigator.platform.indexOf("Win") > -1 ? true : false;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+    if (isWindows) {
+      // if we are on windows OS we activate the perfectScrollbar function
+      if (document.getElementsByClassName("main-content")[0]) {
+        const mainpanel = document.querySelector(".main-content");
+        new PerfectScrollbar(mainpanel);
+      }
 
-    &.router-link-exact-active {
-      color: #42b983;
+      if (document.getElementsByClassName("sidenav")[0]) {
+        const sidebar = document.querySelector(".sidenav");
+        new PerfectScrollbar(sidebar);
+      }
+
+      if (document.getElementsByClassName("navbar-collapse")[0]) {
+        const fixedplugin = document.querySelector(
+          ".navbar:not(.navbar-expand-lg) .navbar-collapse"
+        );
+        new PerfectScrollbar(fixedplugin);
+      }
+
+      if (document.getElementsByClassName("fixed-plugin")[0]) {
+        const fixedplugin = document.querySelector(".fixed-plugin");
+        new PerfectScrollbar(fixedplugin);
+      }
     }
   }
-}
-</style>
+};
+</script>
