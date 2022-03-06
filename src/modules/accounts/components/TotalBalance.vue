@@ -1,7 +1,7 @@
 <template>
   <div class="card sticky-top" style="top: 100px">
     <div class="card-header p-3 pb-0">
-      <h6 class="mb-0">Saldo total</h6>
+      <h6 class="mb-0">{{ $t("accounts.total_balance") }}</h6>
     </div>
     <div class="card-body border-radius-lg p-3">
       <div class="d-flex">
