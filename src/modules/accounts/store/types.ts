@@ -1,4 +1,4 @@
 export type CreateAccountRequest = {
-	name: string;
-	balance: number;
+  name: string;
+  balance: number;
 };

@@ -15,8 +15,8 @@ Vue.config.productionTip = false;
 Vue.use(money, { precision: 2 });
 
 new Vue({
-	i18n,
-	router,
-	store,
-	render: (h) => h(App),
+  i18n,
+  router,
+  store,
+  render: h => h(App)
 }).$mount("#app");
