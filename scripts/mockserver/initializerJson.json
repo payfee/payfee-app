@@ -1,0 +1,74 @@
+[
+	{
+		"httpRequest": {
+			"path": "/v1/accounts",
+			"method": "POST"
+		},
+		"httpResponse": {
+			"statusCode": 422,
+			"headers": {
+				"content-type": ["application/json"]
+			},
+			"delay": {
+				"timeUnit": "SECONDS",
+				"value": 1
+			},
+			"body": {
+				"message": "Limite do plano atingido"
+			}
+		}
+	},
+	{
+		"httpRequest": {
+			"path": "/v1/accounts",
+			"method": "GET"
+		},
+		"httpResponse": {
+			"statusCode": 200,
+			"headers": {
+				"content-type": ["application/json"]
+			},
+			"delay": {
+				"timeUnit": "SECONDS",
+				"value": 5
+			},
+			"body": [
+				{
+					"account_id": "12345",
+					"user_id": "12345",
+					"banking_institution_id": "12345",
+					"name": "Nubank",
+					"balance": 1400.25
+				},
+				{
+					"account_id": "12345",
+					"user_id": "12345",
+					"banking_institution_id": "12345",
+					"name": "Bradesco",
+					"balance": 100.19
+				},
+				{
+					"account_id": "12345",
+					"user_id": "12345",
+					"banking_institution_id": "12345",
+					"name": "Itaú",
+					"balance": 100.19
+				},
+				{
+					"account_id": "12345",
+					"user_id": "12345",
+					"banking_institution_id": "12345",
+					"name": "Caixa",
+					"balance": 100.19
+				},
+				{
+					"account_id": "12345",
+					"user_id": "12345",
+					"banking_institution_id": "12345",
+					"name": "Rico",
+					"balance": 100.19
+				}
+			]
+		}
+	}
+]
