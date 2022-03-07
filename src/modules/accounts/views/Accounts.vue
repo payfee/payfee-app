@@ -1,13 +1,18 @@
 <template>
 	<div>
 		<new-account-modal ref="newAccountModal"></new-account-modal>
-		<div class="mb-3">
+		<div class="mb-3" v-if="!!accounts.length">
 			<payfee-buton @click="openNewAccountModal">Nova conta</payfee-buton>
 		</div>
 
+		<no-account
+			v-if="!isLoadingAccounts && !accounts.length"
+			@onCreateNewAccount="openNewAccountModal"
+		/>
+
 		<loading-spin v-if="isLoadingAccounts" />
 
-		<div class="row" v-else>
+		<div class="row" v-if="!isLoadingAccounts && !!accounts.length">
 			<div class="col-sm-12 col-md-8 order-md-first order-last">
 				<div class="row">
 					<template v-for="(account, key) of accounts">
@@ -36,6 +41,7 @@ import TotalBalance from "../components/TotalBalance.vue";
 import { Account } from "../domain/account";
 import { AccountsStore } from "@/store/modules";
 import LoadingSpin from "@/components/Loading.vue";
+import NoAccount from "../components/NoAccount.vue";
 
 @Component({
 	components: {
@@ -44,6 +50,7 @@ import LoadingSpin from "@/components/Loading.vue";
 		PayfeeButon,
 		NewAccountModal,
 		LoadingSpin,
+		NoAccount,
 	},
 })
 export default class Accounts extends Vue {

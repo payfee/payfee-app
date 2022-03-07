@@ -44,6 +44,8 @@ class AccountsModule extends VuexModule {
 
 			account.account_id = result.data.account_id;
 
+			this.context.commit("addAccount", account);
+
 			return { left: account };
 		} catch (error) {
 			return {

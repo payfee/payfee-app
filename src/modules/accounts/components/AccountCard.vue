@@ -4,7 +4,7 @@
 			<div
 				class="position-relative icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg"
 			>
-				<i class="fas fa-landmark opacity-10" aria-hidden="true"></i>
+				<i class="fas fa-landmark opacity-10"></i>
 			</div>
 		</div>
 		<div class="card-body pt-0 p-3 text-center">
