@@ -7,8 +7,9 @@ export default new VueI18n({
   locale: "pt_BR",
   messages: {
     pt_BR: {
-      drawerMenu: {
-        accounts: "Contas"
+      sidebar_menu: {
+        dashboard: "Dashboard",
+        accounts: "Contas",
       },
       common: {
         cancel: "Cancelar",

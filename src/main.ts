@@ -14,6 +14,13 @@ import "./plugins/validations";
 Vue.config.productionTip = false;
 Vue.use(money, { precision: 2 });
 
+import { IconPack, library } from "@fortawesome/fontawesome-svg-core";
+import { fad } from "@fortawesome/pro-duotone-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+library.add(fad as IconPack);
+
+Vue.component("PayfeeIcon", FontAwesomeIcon);
+
 new Vue({
   i18n,
   router,

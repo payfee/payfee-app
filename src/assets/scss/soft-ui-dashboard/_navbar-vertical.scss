@@ -126,12 +126,12 @@
             > .nav-link {
               .icon {
                 svg {
-                  .color-background {
-                    fill: $dark-gradient-state;
+                  &.color-background {
+                    color: $dark-gradient-state;
                   }
 
-                  .color-foreground {
-                    fill: $dark-gradient;
+                  &.color-foreground {
+                    color: $dark-gradient;
                   }
                 }
               }
@@ -310,9 +310,9 @@
       @include gradient-directional(nth($primary, 1) 0%, nth($primary, -1) 100%, $deg: 310deg);
 
       svg {
-        .color-background,
-        .color-foreground {
-          fill: $white;
+        &.color-background,
+        &.color-foreground {
+          color: $white;
         }
       }
     }

@@ -30,7 +30,7 @@
 			},
 			"delay": {
 				"timeUnit": "SECONDS",
-				"value": 5
+				"value": 3
 			},
 			"body": [
 				{
