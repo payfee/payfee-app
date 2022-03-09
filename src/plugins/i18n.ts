@@ -9,7 +9,7 @@ export default new VueI18n({
     pt_BR: {
       sidebar_menu: {
         dashboard: "Dashboard",
-        accounts: "Contas",
+        accounts: "Contas"
       },
       common: {
         cancel: "Cancelar",

@@ -1,7 +1,7 @@
 <template>
-    <div class="alert alert-danger text-white">
-        Erro ao realizar operação
-    </div>
+  <div class="alert alert-danger text-white">
+    Erro ao realizar operação
+  </div>
 </template>
 
 <script lang="ts">

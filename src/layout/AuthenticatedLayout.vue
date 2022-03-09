@@ -4,7 +4,7 @@
     <main
       class="main-content position-relative max-height-vh-100 h-100 border-radius-lg "
     >
-      <app-navbar/>
+      <app-navbar />
       <div class="container-fluid py-4">
         <div class="row">
           <router-view></router-view>
