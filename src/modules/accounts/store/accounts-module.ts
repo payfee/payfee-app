@@ -70,7 +70,7 @@ class AccountsModule extends VuexModule {
 			this.context.commit("setIsFetching", true);
 			const result = await apiClient.get<Account[]>("/v1/accounts");
 
-			this.context.commit("addAccount", result.data);
+			this.context.commit("setAccounts", result.data);
 		} catch (error) {
 			this.context.commit("setError", true);
 		} finally {

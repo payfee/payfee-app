@@ -55,7 +55,7 @@ export default class AppSidenav extends Vue {
 		{
 			title: i18n.t("sidebar_menu.accounts"),
 			to: "/accounts",
-			icon: "coffee",
+			icon: "landmark",
 		},
 	];
 }

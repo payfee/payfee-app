@@ -22,6 +22,7 @@ export default new VueI18n({
         }
       },
       accounts: {
+        accounts_title: "Contas",
         create_account_title: "Nova conta",
         create_account_subtitle:
           "Primeiro passo para organizar sua vida financeira!",

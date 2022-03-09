@@ -55,7 +55,7 @@ import AppError from "@/components/AppError.vue";
 		NewAccountModal,
 		LoadingSpin,
 		NoAccount,
-    AppError
+		AppError,
 	},
 })
 export default class Accounts extends Vue {
