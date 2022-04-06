@@ -1,5 +1,5 @@
 <template>
-  <anonymous-layout unsplashId="1579621970795-87facc2f976d">
+  <div>
     <div v-if="isSuccess && !isLoading" class="card">
       <div class="card-body text-center">
         <payfee-icon icon="fad fa-circle-check" class="text-success fs-1" />
@@ -10,7 +10,7 @@
         </p>
 
         <router-link
-          to="/login"
+          to="/auth/login"
           class="btn bg-gradient-primary btn-rounded mt-3"
         >
           Ir para login
@@ -122,7 +122,7 @@
         <p class="mb-4 text-sm mx-auto">
           Já possui uma conta?
           <router-link
-            to="/login"
+            to="/auth/login"
             class="text-info text-gradient font-weight-bold"
           >
             Entrar
@@ -130,12 +130,11 @@
         </p>
       </div>
     </div>
-  </anonymous-layout>
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Ref, Vue } from "vue-property-decorator";
-import AnonymousLayout from "@/layout/AnonymousLayout.vue";
 import { ValidationObserver, ValidationProvider } from "vee-validate";
 
 import SoftAlert from "@/components/SoftAlert.vue";
@@ -149,7 +148,6 @@ const registerUserModule = namespace("registerUser");
   components: {
     PayfeeButton,
     SoftAlert,
-    AnonymousLayout,
     ValidationObserver,
     ValidationProvider
   }
@@ -171,7 +169,7 @@ export default class Register extends Vue {
   @registerUserModule.State
   public errorMessage!: string;
 
-  mounted(){
+  mounted() {
     RegisterUserStore.RESET_STATE();
   }
 

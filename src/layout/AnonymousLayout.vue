@@ -5,7 +5,7 @@
         <div class="container">
           <div class="row">
             <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
-              <slot></slot>
+              <router-view></router-view>
             </div>
             <div class="col-md-6">
               <div
@@ -16,7 +16,7 @@
                   :style="{
                     'background-image':
                       'url(https://images.unsplash.com/photo-' +
-                      unsplashId +
+                      $route.meta.unsplashId +
                       '?auto=format&fit=crop&w=1000)'
                   }"
                 ></div>
@@ -41,10 +41,5 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
-export default class AnonymousLayout extends Vue {
-  @Prop({
-    default: "1626266061368-46a8f578ddd6"
-  })
-  public unsplashId!: string;
-}
+export default class AnonymousLayout extends Vue {}
 </script>

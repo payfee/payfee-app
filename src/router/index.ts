@@ -5,6 +5,7 @@ import Login from "@/modules/auth/views/Login.vue";
 import Register from "@/modules/auth/views/Register.vue";
 
 import AuthenticatedLayout from "@/layout/AuthenticatedLayout.vue";
+import AnonymousLayout from "@/layout/AnonymousLayout.vue";
 import i18n from "@/plugins/i18n";
 import TransactionsRoutes from "@/modules/transactions/routes";
 
@@ -12,12 +13,25 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/login",
-    component: Login
-  },
-  {
-    path: "/register",
-    component: Register
+    path: "/auth",
+    component: AnonymousLayout,
+    children: [
+      {
+        alias: "/",
+        path: "/auth/login",
+        component: Login,
+        meta: {
+          unsplashId: "1626266061368-46a8f578ddd6"
+        }
+      },
+      {
+        path: "/auth/register",
+        component: Register,
+        meta: {
+          unsplashId: "1579621970795-87facc2f976d"
+        }
+      }
+    ]
   },
   {
     path: "/",
