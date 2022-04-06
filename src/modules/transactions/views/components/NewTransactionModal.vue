@@ -4,9 +4,8 @@
       <div class="card card-plain">
         <div class="card-header pb-0 text-left">
           <h4 class="font-weight-bolder text-primary text-gradient">
-            {{ $t("accounts.create_account_title") }}
+            Nova transação
           </h4>
-          <p class="mb-0">{{ $t("accounts.create_account_subtitle") }}</p>
         </div>
         <div class="card-body">
           <ValidationObserver
@@ -15,43 +14,71 @@
             role="form"
             v-slot="{ valid }"
           >
-            <label>{{ $t("accounts.account_name") }}</label>
-            <validation-provider
-              :name="$t('accounts.account_name')"
-              rules="required|min:3|max:50"
-              tag="div"
-              v-slot="{ errors }"
-              class="mb-3"
-            >
-              <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  :class="{ 'is-invalid': !!errors.length }"
-                  v-model="accountName"
-                  :placeholder="$t('accounts.account_name_example')"
-                  :disabled="isLoading"
-                />
-              </div>
-              <small class="text-danger">{{ errors[0] }}</small>
-            </validation-provider>
+            <div class="form-group">
+              <label>Tipo</label>
+              <select v-model="type" class="form-control">
+                <option value="">Selecione um tipo</option>
+                <option value="DEBIT">Despesa</option>
+                <option value="CREDIT">Receita</option>
+              </select>
+            </div>
 
-            <label>{{ $t("accounts.initial_balance") }}</label>
             <validation-provider
-              :name="$t('accounts.initial_balance')"
+              name="Valor"
               rules="required|min_value:0|max_value:10000000000000"
               tag="div"
               v-slot="{ errors }"
               class="mb-3"
             >
-              <div class="input-group">
-                <money
-                  v-model="initialBalance"
-                  v-bind="balanceFormat"
-                  class="form-control"
-                  :disabled="isLoading"
-                ></money>
-              </div>
+              <label>Valor</label>
+              <money
+                v-model="amount"
+                v-bind="balanceFormat"
+                class="form-control"
+                :disabled="isLoading"
+              ></money>
+              <small class="text-danger">{{ errors[0] }}</small>
+            </validation-provider>
+
+            <validation-provider
+              name="Descrição"
+              rules="required|max:250"
+              tag="div"
+              v-slot="{ errors }"
+              class="mb-3"
+            >
+              <label>Descrição</label>
+              <input
+                type="text"
+                class="form-control"
+                :class="{ 'is-invalid': !!errors.length }"
+                v-model="description"
+                placeholder="Ex.: Pagamento conta de luz"
+                :disabled="isLoading"
+              />
+              <small class="text-danger">{{ errors[0] }}</small>
+            </validation-provider>
+
+            <validation-provider
+              name="Conta"
+              rules="required"
+              tag="div"
+              v-slot="{ errors }"
+              class="mb-3"
+            >
+              <label>Conta</label>
+              <select
+                v-model="accountId"
+                class="form-control"
+                :class="{ 'is-invalid': !!errors.length }"
+              >
+                <option value="">Selecione uma conta</option>
+                <template v-for="(account, key) of accounts">
+                  <option :value="account.account_id" :key="key">{{
+                    account.name
+                  }}</option>
+                </template>
+              </select>
               <small class="text-danger">{{ errors[0] }}</small>
             </validation-provider>
 
@@ -69,14 +96,14 @@
                 {{ $t("common.cancel") }}
               </button>
               <payfee-button
-                @click="createAccount"
+                @click="createTransaction"
                 type="button"
                 class="btn btn-round bg-gradient-primary ml-auto"
                 loading-text="Processando..."
                 :is-loading="isLoading"
                 :disabled="!valid"
               >
-                {{ $t("accounts.create_account") }}
+                Criar transação
               </payfee-button>
             </div>
           </ValidationObserver>
@@ -92,10 +119,12 @@ import PayfeeButton from "@/components/PayfeeButton.vue";
 import { ValidationObserver, ValidationProvider } from "vee-validate";
 import { Component, Ref, Vue } from "vue-property-decorator";
 import { Money } from "v-money";
-import { Action, namespace } from "vuex-class";
-import { AccountsStore } from "@/store/modules";
+import { namespace } from "vuex-class";
+import { TransactionsStore } from "@/store/modules";
+import { Account } from "@/modules/accounts/domain/account";
 import SoftAlert from "@/components/SoftAlert.vue";
 const notificationsModule = namespace("notifications");
+const accountsNamespace = namespace("accounts");
 
 @Component({
   components: {
@@ -103,17 +132,19 @@ const notificationsModule = namespace("notifications");
     PayfeeButton,
     ValidationProvider,
     ValidationObserver,
-    SoftAlert,
-    Money
+    Money,
+    SoftAlert
   }
 })
-export default class NewAccountModal extends Vue {
+export default class NewTransactionModal extends Vue {
   @Ref("form")
   private readonly form!: InstanceType<typeof ValidationObserver>;
 
   public show = false;
-  public accountName = "";
-  public initialBalance = 0;
+  public type = "";
+  public amount = 0;
+  public description = "";
+  public accountId = "";
   public errorMessage = "";
 
   private balanceFormat = {
@@ -124,13 +155,18 @@ export default class NewAccountModal extends Vue {
     masked: false
   };
 
+  @accountsNamespace.State("accounts")
+  private accounts?: Account[];
+
   @notificationsModule.Mutation
   private dispatchSuccess!: (title: string) => void;
   private isLoading = false;
 
   private cleanData() {
-    this.accountName = "";
-    this.initialBalance = 0;
+    this.type = "";
+    this.amount = 0;
+    this.description = "";
+    this.accountId = "";
     this.isLoading = false;
     this.errorMessage = "";
   }
@@ -140,20 +176,24 @@ export default class NewAccountModal extends Vue {
     this.cleanData();
   }
 
-  public async createAccount() {
+  public async createTransaction() {
     const isValid = await this.form.validate();
 
     if (!isValid) return;
 
     this.isLoading = true;
-    const result = await AccountsStore.createNewAccount({
-      name: this.accountName,
-      balance: this.initialBalance
+    const result = await TransactionsStore.createnewTransaction({
+      accountId: this.accountId,
+      transaction: {
+        description: this.description,
+        type: this.type,
+        amount: this.amount
+      }
     });
 
     if (result.left) {
       // TODO: usar tradução
-      this.dispatchSuccess("Conta criada com sucesso!");
+      this.dispatchSuccess("Transação criada com sucesso!");
       this.close();
     } else {
       this.isLoading = false;
@@ -162,6 +202,12 @@ export default class NewAccountModal extends Vue {
   }
 
   public open() {
+    if (!this.accounts?.length) {
+      alert(
+        "Você precisa ter ao menos 1 conta para poder cadastrar uma nova transação"
+      );
+      return;
+    }
     this.show = true;
   }
 }

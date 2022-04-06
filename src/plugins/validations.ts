@@ -4,7 +4,8 @@ import {
   min_value as minValue,
   min,
   max_value as maxValue,
-  max
+  max,
+  email
 } from "vee-validate/dist/rules";
 import i18n from "./i18n";
 
@@ -30,4 +31,8 @@ extend("max_value", {
   ...maxValue,
   message: (_, values) =>
     i18n.t("common.validations.max_value", values).toString()
+});
+extend("email", {
+  ...email,
+  message: (_, values) => i18n.t("common.validations.email", values).toString()
 });

@@ -18,7 +18,8 @@ export default new VueI18n({
           min: "{_field_} deve conter pelo menos {length} caracteres",
           min_value: "{_field_} precisa ser {min} ou maior",
           max: "{_field_} não deve ter mais que {length} caracteres",
-          max_value: "{_field_} precisa ser {max} ou menor"
+          max_value: "{_field_} precisa ser {max} ou menor",
+          email: "{_field_} precisa ser válido"
         }
       },
       accounts: {

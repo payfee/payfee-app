@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-content position-relative h-100">
     <app-sidenav></app-sidenav>
     <main
       class="main-content overflow-auto position-relative max-height-vh-100 h-100 border-radius-lg "

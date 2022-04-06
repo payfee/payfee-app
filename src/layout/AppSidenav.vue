@@ -17,7 +17,7 @@
     </div>
     <hr class="horizontal dark mt-0" />
     <div
-      class="collapse navbar-collapse  w-auto h-auto h-100"
+      class="overflow-hidden collapse navbar-collapse  w-auto h-auto h-100"
       id="sidenav-collapse-main"
     >
       <ul class="navbar-nav">
@@ -59,6 +59,11 @@ export default class AppSidenav extends Vue {
       title: i18n.t("sidebar_menu.accounts"),
       to: "/accounts",
       icon: "landmark"
+    },
+    {
+      title: "Transações",
+      to: "/transactions",
+      icon: "list-tree"
     }
   ];
 }

@@ -30,45 +30,102 @@
 			},
 			"delay": {
 				"timeUnit": "SECONDS",
-				"value": 3
+				"value": 2
 			},
-			"body": [
-				{
-					"account_id": "12345",
-					"user_id": "12345",
-					"banking_institution_id": "12345",
-					"name": "Nubank",
-					"balance": 1400.25
-				},
-				{
-					"account_id": "12345",
-					"user_id": "12345",
-					"banking_institution_id": "12345",
-					"name": "Bradesco",
-					"balance": 100.19
-				},
-				{
-					"account_id": "12345",
-					"user_id": "12345",
-					"banking_institution_id": "12345",
-					"name": "Itaú",
-					"balance": 100.19
-				},
-				{
-					"account_id": "12345",
-					"user_id": "12345",
-					"banking_institution_id": "12345",
-					"name": "Caixa",
-					"balance": 100.19
-				},
-				{
-					"account_id": "12345",
-					"user_id": "12345",
-					"banking_institution_id": "12345",
-					"name": "Rico",
-					"balance": 100.19
-				}
-			]
+			"body": {
+				"items": [
+					{
+						"account_id": "12345",
+						"user_id": "12345",
+						"banking_institution_id": "12345",
+						"name": "Nubank",
+						"balance": 1400.25
+					},
+					{
+						"account_id": "12345",
+						"user_id": "12345",
+						"banking_institution_id": "12345",
+						"name": "Bradesco",
+						"balance": 100.19
+					}
+				]
+			}
+		}
+	},
+	{
+		"httpRequest": {
+			"path": "/v1/transactions",
+			"method": "POST"
+		},
+		"httpResponse": {
+			"statusCode": 200,
+			"headers": {
+				"content-type": ["application/json"]
+			},
+			"delay": {
+				"timeUnit": "SECONDS",
+				"value": 2
+			},
+			"body": {
+				"operations": [
+					{
+						"id": "9b3c67ba-0c2e-431c-a6ad-0944b9e92528"
+					}
+				]
+			}
+		}
+	},
+	{
+		"httpRequest": {
+			"path": "/v1/transactions",
+			"method": "GET"
+		},
+		"httpResponse": {
+			"statusCode": 200,
+			"headers": {
+				"content-type": ["application/json"]
+			},
+			"delay": {
+				"timeUnit": "SECONDS",
+				"value": 1
+			},
+			"body": {
+				"has_more": false,
+				"items": [
+					{
+						"id": "bcc953f4-63b4-463a-ab21-035eb75946b4",
+						"type": "DEBIT",
+						"description": "Pagamento internet",
+						"account_id": "12345",
+						"amount": 99,
+						"date": "2022-04-03 GMT-3"
+					},
+					{
+						"id": "bcc953f4-63b4-463a-ab21-035eb75946b4",
+						"type": "DEBIT",
+						"description": "Pagamento naturgy",
+						"account_id": "12345",
+						"amount": 50,
+						"date": "2022-04-03"
+					},
+					{
+						"id": "bcc953f4-63b4-463a-ab21-035eb75946b4",
+						"type": "DEBIT",
+						"description": "Pagamento light",
+						"account_id": "12345",
+						"amount": 210.10,
+						"date": "2022-04-03"
+					},
+					{
+						"id": "bcc953f4-63b4-463a-ab21-035eb75946b4",
+						"type": "CREDIT",
+						"description": "Depósito salário",
+						"account_id": "12345",
+						"amount": 2000.0,
+						"date": "2022-04-03"
+					}
+				]
+			}
 		}
 	}
 ]

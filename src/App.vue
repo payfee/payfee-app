@@ -5,10 +5,17 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import PerfectScrollbar from "perfect-scrollbar";
+import { loadScript } from "@/services/script-loader";
+import "bootstrap";
+
+import { AuthStore } from "@/store/modules";
 
 @Component
 export default class App extends Vue {
   public mounted(): void {
+    window.onload = () => {
+      loadScript("assets/js/core.js");
+    };
     const isWindows = navigator.platform.indexOf("Win") > -1 ? true : false;
 
     if (isWindows) {
@@ -38,6 +45,8 @@ export default class App extends Vue {
       //   const fixedplugin = document.querySelector(".fixed-plugin");
       //   new PerfectScrollbar(fixedplugin);
       // }
+
+      // AuthStore.requestLogin();
     }
   }
 }

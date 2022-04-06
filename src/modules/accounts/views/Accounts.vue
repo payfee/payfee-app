@@ -2,7 +2,7 @@
   <div>
     <new-account-modal ref="newAccountModal"></new-account-modal>
     <div class="mb-3" v-if="!!accounts.length">
-      <payfee-buton @click="openNewAccountModal">Nova conta</payfee-buton>
+      <payfee-button @click="openNewAccountModal">Nova conta</payfee-button>
     </div>
 
     <app-error v-if="isError" />
@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import PayfeeButon from "@/components/PayfeeButton.vue";
+import PayfeeButton from "@/components/PayfeeButton.vue";
 import { Component, Vue } from "vue-property-decorator";
 import AccountCard from "../components/AccountCard.vue";
 import NewAccountModal from "../components/NewAccountModal.vue";
@@ -51,7 +51,7 @@ import AppError from "@/components/AppError.vue";
   components: {
     AccountCard,
     TotalBalance,
-    PayfeeButon,
+    PayfeeButton,
     NewAccountModal,
     LoadingSpin,
     NoAccount,
