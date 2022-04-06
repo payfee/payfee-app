@@ -17,7 +17,7 @@
         </router-link>
       </div>
     </div>
-    <div v-else class="card card-plain mt-8">
+    <div v-else class="card card-plain mt-4">
       <div class="card-header pb-0 text-start bg-transparent">
         <h1 class="login-logo text-primary text-gradient">Payfee</h1>
 
@@ -170,6 +170,10 @@ export default class Register extends Vue {
 
   @registerUserModule.State
   public errorMessage!: string;
+
+  mounted(){
+    RegisterUserStore.RESET_STATE();
+  }
 
   public async postRegistration() {
     const isValid = await this.form.validate();
