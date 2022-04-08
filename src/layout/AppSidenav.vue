@@ -49,15 +49,10 @@ import i18n from "@/plugins/i18n";
 
 @Component
 export default class AppSidenav extends Vue {
-  private menuItems = [
-    {
-      title: i18n.t("sidebar_menu.dashboard"),
-      to: "/",
-      icon: "chart-line"
-    },
+  public menuItems = [
     {
       title: i18n.t("sidebar_menu.accounts"),
-      to: "/accounts",
+      to: "/",
       icon: "landmark"
     },
     {

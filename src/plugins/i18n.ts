@@ -8,7 +8,6 @@ export default new VueI18n({
   messages: {
     pt_BR: {
       sidebar_menu: {
-        dashboard: "Dashboard",
         accounts: "Contas"
       },
       common: {

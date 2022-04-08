@@ -1,9 +1,9 @@
 import AccountsModule from "@/modules/accounts/store/accounts-module";
 import TransactionsModule from "@/modules/transactions/store/transactions-module";
 import RegisterUserModule from "@/modules/auth/store/register-user-module";
+import AuthModule from "@/modules/auth/store/auth-module";
 import store from "@/store";
 import { getModule } from "vuex-module-decorators";
-import AuthModule from "./modules/auth-module";
 
 export const AccountsStore = getModule(AccountsModule, store);
 export const TransactionsStore = getModule(TransactionsModule, store);

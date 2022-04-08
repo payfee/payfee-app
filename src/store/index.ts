@@ -3,8 +3,8 @@ import TransactionsModule from "@/modules/transactions/store/transactions-module
 import RegisterUserModule from "@/modules/auth/store/register-user-module";
 import Vue from "vue";
 import Vuex from "vuex";
-import AuthModule from "./modules/auth-module";
 import NotificationModule from "./modules/notification-module";
+import AuthModule from "@/modules/auth/store/auth-module";
 
 Vue.use(Vuex);
 
@@ -17,6 +17,6 @@ export default new Vuex.Store({
     notifications: NotificationModule,
     transactions: TransactionsModule,
     registerUser: RegisterUserModule,
-    auth: AuthModule
+    auth: AuthModule,
   }
 });
