@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payfee-app
+  namespace: payfee-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payfee-app
+  template:
+    metadata:
+      labels:
+        app: payfee-app
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: payfee-app
+        image: payfeev1.azurecr.io/payfee-app:latest
+              
+        resources:
+          requests:
+            cpu: 10m
+            memory: 64Mi
+          limits:
+            cpu: 50m
+            memory: 100Mi
+
+        ports:
+        - containerPort: 80
+        

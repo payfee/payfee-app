@@ -48,9 +48,12 @@
             </div>
           </li>
           <li class="nav-item dropdown ms-2 pe-2 d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-body p-0">
+            <button
+              @click="logout"
+              class="btn btn-link mt-auto nav-link text-body p-0"
+            >
               <i class="fa fa-sign-out cursor-pointer"></i>
-            </a>
+            </button>
           </li>
         </ul>
       </div>
@@ -58,6 +61,7 @@
   </nav>
 </template>
 <script lang="ts">
+import { AuthStore } from "@/store/modules";
 import { Component, Vue } from "vue-property-decorator";
 import AppBreadcrumbs from "./AppBreadcrumbs.vue";
 
@@ -67,6 +71,10 @@ import AppBreadcrumbs from "./AppBreadcrumbs.vue";
   }
 })
 export default class AppNavbar extends Vue {
+  async logout() {
+    await AuthStore.logout();
+  }
+
   public mounted() {
     //     var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
     // var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {

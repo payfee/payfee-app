@@ -17,6 +17,6 @@ export default new Vuex.Store({
     notifications: NotificationModule,
     transactions: TransactionsModule,
     registerUser: RegisterUserModule,
-    auth: AuthModule,
+    auth: AuthModule
   }
 });

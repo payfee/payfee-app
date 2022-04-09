@@ -58,10 +58,7 @@ export default class RegisterUserModule extends VuexModule {
 
       Logger.debug("Sending user creation request");
 
-      await apiClient.post<CreateUserResponse>(
-        "/v1/users",
-        request
-      );
+      await apiClient.post<CreateUserResponse>("/v1/users", request);
 
       Logger.debug("Received user creation response");
 

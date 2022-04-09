@@ -14,66 +14,66 @@ import Accounts from "@/modules/accounts/views/Accounts.vue";
 Vue.use(VueRouter);
 
 const routes = [
-	{
-		path: "/auth",
-		component: AnonymousLayout,
-		children: [
-			{
-				alias: "/",
-				path: "/auth/login",
-				component: Login,
-				meta: {
-					unsplashId: "1626266061368-46a8f578ddd6",
-				},
-			},
-			{
-				path: "/auth/register",
-				component: Register,
-				meta: {
-					unsplashId: "1579621970795-87facc2f976d",
-				},
-			},
-		],
-	},
-	{
-		path: "/",
-		component: AuthenticatedLayout,
-		children: [
-			{
-				alias: "/",
-				path: "/accounts",
-				name: "Contas",
-				component: Accounts,
-				meta: {
-					authenticate: true,
-					title: i18n.t("accounts.accounts_title"),
-					breadcrumb: [
-						{ icon: "house", to: { name: "home" } },
-						{ name: i18n.t("accounts.accounts_title") },
-					],
-				},
-			},
-			...TransactionsRoutes,
-		],
-	},
+  {
+    path: "/auth",
+    component: AnonymousLayout,
+    children: [
+      {
+        alias: "/",
+        path: "/auth/login",
+        component: Login,
+        meta: {
+          unsplashId: "1626266061368-46a8f578ddd6"
+        }
+      },
+      {
+        path: "/auth/register",
+        component: Register,
+        meta: {
+          unsplashId: "1579621970795-87facc2f976d"
+        }
+      }
+    ]
+  },
+  {
+    path: "/",
+    component: AuthenticatedLayout,
+    children: [
+      {
+        alias: "/",
+        path: "/accounts",
+        name: "Contas",
+        component: Accounts,
+        meta: {
+          authenticate: true,
+          title: i18n.t("accounts.accounts_title"),
+          breadcrumb: [
+            { icon: "house", to: { name: "home" } },
+            { name: i18n.t("accounts.accounts_title") }
+          ]
+        }
+      },
+      ...TransactionsRoutes
+    ]
+  }
 ];
 
 type RouterMeta = {
-	authenticate: boolean;
+  authenticate: boolean;
 };
 
 const router = new VueRouter({
-	routes,
-	linkExactActiveClass: "active",
+  routes,
+  linkExactActiveClass: "active"
 });
 router.beforeEach((to, from, next) => {
-	const meta = to.meta as RouterMeta;
+  const meta = to.meta as RouterMeta;
 
-	if (meta.authenticate && !AuthStore.isAuthenticated) {
-		return next("/auth/login");
-	}
+  if (meta.authenticate && !AuthStore.isAuthenticated) {
+    return next("/auth/login");
+  }
 
-	return next();
+  return next();
 });
 
 export default router;
