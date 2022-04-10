@@ -26,7 +26,7 @@ export default class AuthModule extends VuexModule {
     password: string;
   }): Promise<ErrorHandling> {
     try {
-      await apiClient.post("/v1/login", payload);
+      await apiClient.post("/login", payload);
 
       this.context.commit(AUTHORIZED);
 

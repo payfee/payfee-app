@@ -6,13 +6,19 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:
+  tls:
+    - secretName: wild-payfee-app-tls-cert
+      hosts:
+        - "web.payfee.app"
+
   rules:
-   - http:
-       paths:
-       - path: /
-         pathType: Prefix
-         backend:
-           service:
-             name: payfee-app-svc
-             port:
-               number: 80
+    - host: "web.payfee.app"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: payfee-app-svc
+                port:
+                  number: 80

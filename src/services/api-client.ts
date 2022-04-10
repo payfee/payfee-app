@@ -2,10 +2,7 @@ import axios from "axios";
 
 export default axios.create({
   timeout: 15000,
-  baseURL: "http://localhost:1080",
-  headers: {
-    "x-user-id": "123123"
-  }
+  baseURL: "/api"
 });
 
 export type StandardError = {
